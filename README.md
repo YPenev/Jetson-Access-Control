@@ -2,8 +2,20 @@
 The project uses an Nvidia Jetson Nano with an RFID card reader and camera to grant access based on card authentication and face recognition using the DeepFace library.
 
 # Project Description
-This project uses an Nvidia Jetson Nano board to perform access control using RFID cards and face recognition. The system consists of a USB camera and an MFRC522 module for RFID card reading. The DeepFace library is used for face recognition.
-The user swipes their RFID card in front of the reader. The system then checks if the card is valid and if it is in the allowed database. If the card is allowed, the system takes a picture using the USB camera and performs face recognition on the captured image. If the face in the image matches the face associated with the card, the user is allowed access. Otherwise, access is denied.
+The goal of this project is to create a system that allows access to a secure area only to authorized individuals. The system combines RFID card reading with face recognition technology to identify users and grant or deny access based on their identity.
+The system is built using a Jetson Nano board, an MFRC522 RFID module, a USB camera, and the DeepFace computer vision library. The Jetson Nano board is a small, powerful computer that can run complex machine learning algorithms, making it an ideal platform for this project. The MFRC522 RFID module is a low-cost device that can read and write RFID cards. The USB camera captures images of users who are attempting to access the secure area, and the DeepFace library is used to perform face recognition.
+To set up the system, we first need to install the necessary software libraries. This includes the mfrc522-python library for communicating with the RFID module, the opencv-python library for accessing the USB camera, and the DeepFace library for face recognition. Once the libraries are installed, we can connect the hardware components to the Jetson Nano board.
+The MFRC522 module is connected to the Jetson Nano board using SPI pins, and the USB camera is connected to the board's USB port. We also need to create a database to store the authorized users' information. The database contains the users' unique RFID card number and a photo of their face.
+
+The system works as follows:
+
+1. When a user wants to access the secure area, they swipe their RFID card in front of the MFRC522 module. The module reads the card's unique identifier and sends it to the Jetson Nano board.
+2. The Jetson Nano board checks if the RFID card number is valid and matches a number in the authorized users' database. If the card is allowed, the system proceeds to the next step. If not, access is denied.
+3. The USB camera takes a picture of the user standing in front of it.
+4. The DeepFace library is used to detect and extract the user's facial features from the captured image.
+5. The system compares the extracted facial features with the features of the user associated with the swiped RFID card in the authorized users' database. If the faces match, access is granted. If not, access is denied.
+6. The system displays the access status on a user interface, indicating whether access is allowed or denied.
+
 
 # Libraries Used
 The following libraries were used for this project:
